@@ -21,10 +21,12 @@ pickle.dump(regr, open('diabetes.pkl', 'wb'))
 
 app = Flask(__name__)
 
+# check to see that it's working
 @app.route('/isAlive')
 def index():
     return "true"
 
+# specify the API endpoint
 @app.route('/prediction/', methods=['GET'])
 def get_prediction():
     feature = float(request.args.get('f'))
@@ -34,6 +36,7 @@ def get_prediction():
 
 if __name__ == '__main__':
     if os.environ['ENVIRONMENT'] == 'production':
+        # specifies that you're running out of port 80
         app.run(port=80,host='0.0.0.0')
 
 
